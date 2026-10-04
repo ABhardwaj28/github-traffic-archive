@@ -48,7 +48,7 @@ For referrer and path snapshots, the archive uses a `taken_on` date and a list o
 
 Replace repository names, paths, titles, and other identifying values with fictional names while preserving the shape of the data and the values needed to reproduce the problem.
 
-Aggregate traffic does not provide individual visitor identities. The `uniques` value is reported by day and should not be treated as a count of distinct people across the entire archive.
+ Daily views and clones contain per-day unique counts; summing them does not give distinct visitors across the archive. Popular paths and referrers describe the API's rolling 14-day window and are stored as dated snapshots, not daily measurements. Aggregate traffic does not provide individual visitor identities.
 
 Prefer:
 
