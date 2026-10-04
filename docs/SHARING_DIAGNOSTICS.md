@@ -30,6 +30,26 @@ Review page titles before including traffic data in a bug report.
 
 When possible, create a small fictional example that demonstrates the problem without using real private data.
 
+For referrer and path snapshots, the archive uses a `taken_on` date and a list of `rows`. A representative fictional snapshot is:
+
+```json
+{
+  "taken_on": "2026-01-15",
+  "rows": [
+    {
+      "path": "/fictional/project",
+      "title": "Example Project",
+      "count": 12,
+      "uniques": 8
+    }
+  ]
+}
+```
+
+Replace repository names, paths, titles, and other identifying values with fictional names while preserving the shape of the data and the values needed to reproduce the problem.
+
+Aggregate traffic does not provide individual visitor identities. The `uniques` value is reported by day and should not be treated as a count of distinct people across the entire archive.
+
 Prefer:
 
 - fictional repository names
@@ -45,7 +65,31 @@ Do not include:
 - private repository information
 - unrelated production data
 
-For the bug-report process, see [the bug report form](https://github.com/HafidIdrissi/github-traffic-archive/issues/54) and the [synthetic example](https://github.com/HafidIdrissi/github-traffic-archive/issues/33).
+Related planned work includes [issue #54](https://github.com/HafidIdrissi/github-traffic-archive/issues/54) and [issue #33](https://github.com/HafidIdrissi/github-traffic-archive/issues/33). These issues are not existing artifacts; they describe future work around bug reporting and synthetic fixtures.
+
+## Reproduction essentials
+
+Include enough information for someone else to reproduce the problem without exposing private data.
+
+Include:
+
+- the project version
+- the command used, with credentials replaced by placeholders
+- the expected result
+- the actual result
+- a short sanitized error message, if applicable
+
+For example:
+
+```text
+Version: traffic-archive 1.0.0
+Command: traffic-archive --repos example-owner/example-repo --token <REDACTED>
+Expected: the archive completes successfully
+Actual: the archive exits with an error
+Error: HTTP 403: access denied
+```
+
+Never include a real token or other credential in a bug report.
 
 ## Before posting a bug report
 
@@ -58,3 +102,6 @@ Check that:
 - [ ] No tokens or credentials are included
 - [ ] The reproduction uses fictional data where possible
 - [ ] Only the data needed to demonstrate the problem is included
+- [ ] Version and reproduction command are included
+- [ ] Expected and actual results are described
+- [ ] Errors have been sanitized
